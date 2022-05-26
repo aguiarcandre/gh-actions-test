@@ -29,8 +29,12 @@ jobs:
       if: always()
       with:
         junit_files: "rspec.xml"
+        
+    - name: setup codecov
+      run: curl -Os https://uploader.codecov.io/latest/linux/codecov && chmod +x codecov && ./codecov
 
-    - uses: codecov/codecov-action@v2
+    - name: Run Codecov
+      uses: codecov/codecov-action@v2
       with:
         files: ./rspec.xml
 
