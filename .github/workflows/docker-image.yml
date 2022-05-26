@@ -29,3 +29,8 @@ jobs:
     steps:
     - name: Run tests
       run: docker-compose run web bundle exec rspec test/models/auction_test.rb
+
+    - name: Simplecov Report
+      uses: aki77/simplecov-report-action@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
