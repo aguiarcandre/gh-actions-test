@@ -3,12 +3,21 @@
 require 'rails_helper'
 
 RSpec.describe Auction, :type => :model do
+  let(:seller) {
+    User.new(:email => "jane@doe.com", :password => "pw1234")
+  }
   subject {
     described_class.new(title: "Anything",
                         description: "Lorem ipsum",
                         start_date: DateTime.now,
-                        end_date: DateTime.now + 1.week)
+                        end_date: DateTime.now + 1.week,
+                        user_id: 1)
   }
+
+  describe "Associations" do
+    it { should belong_to(:user).without_validating_presence }
+    it { should have_many(:bids) }
+  end
 
   it "is valid with valid attributes" do
     expect(subject).to be_valid
