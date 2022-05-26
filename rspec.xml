@@ -1,14 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="rspec" tests="8" skipped="0" failures="0" errors="0" time="0.107620" timestamp="2022-05-26T22:24:42+00:00" hostname="33cf7089c5d2">
+<testsuite name="rspec" tests="15" skipped="0" failures="0" errors="0" time="0.178315" timestamp="2022-05-26T23:24:59+00:00" hostname="062bad7b8d4e">
 <properties>
-<property name="seed" value="26257"/>
+<property name="seed" value="48205"/>
 </properties>
-<testcase classname="test.models.auction_test" name="Auction is valid with valid attributes" file="./test/models/auction_test.rb" time="0.079841"></testcase>
-<testcase classname="test.models.auction_test" name="Auction is not valid without a title" file="./test/models/auction_test.rb" time="0.003923"></testcase>
-<testcase classname="test.models.auction_test" name="Auction is not valid without a description" file="./test/models/auction_test.rb" time="0.002508"></testcase>
-<testcase classname="test.models.auction_test" name="Auction is not valid without a start_date" file="./test/models/auction_test.rb" time="0.002246"></testcase>
-<testcase classname="test.models.auction_test" name="Auction is not valid without a end_date" file="./test/models/auction_test.rb" time="0.002401"></testcase>
-<testcase classname="test.models.user_test" name="User Validations is valid with valid attributes" file="./test/models/user_test.rb" time="0.010191"></testcase>
-<testcase classname="test.models.user_test" name="User Validations is not valid without a password" file="./test/models/user_test.rb" time="0.002275"></testcase>
-<testcase classname="test.models.user_test" name="User Validations is not valid without an email" file="./test/models/user_test.rb" time="0.001979"></testcase>
+<testcase classname="test.models.auction_test" name="Auction is valid with valid attributes" file="./test/models/auction_test.rb" time="0.083426"></testcase>
+<testcase classname="test.models.auction_test" name="Auction is not valid without a title" file="./test/models/auction_test.rb" time="0.004539"></testcase>
+<testcase classname="test.models.auction_test" name="Auction is not valid without a description" file="./test/models/auction_test.rb" time="0.002286"></testcase>
+<testcase classname="test.models.auction_test" name="Auction is not valid without a start_date" file="./test/models/auction_test.rb" time="0.002070"></testcase>
+<testcase classname="test.models.auction_test" name="Auction is not valid without a end_date" file="./test/models/auction_test.rb" time="0.002015"></testcase>
+<testcase classname="test.models.auction_test" name="Auction Associations is expected to belong to user" file="./test/models/auction_test.rb" time="0.002203"></testcase>
+<testcase classname="test.models.auction_test" name="Auction Associations is expected to have many bids" file="./test/models/auction_test.rb" time="0.003675"></testcase>
+<testcase classname="test.models.bid_test" name="Bid Associations is expected to belong to bidder required: true" file="./test/models/bid_test.rb" time="0.015250"></testcase>
+<testcase classname="test.models.bid_test" name="Bid Associations is expected to belong to auction required: true" file="./test/models/bid_test.rb" time="0.003459"></testcase>
+<testcase classname="test.models.bid_test" name="Bid Validations is expected to validate that :bidder cannot be empty/falsy" file="./test/models/bid_test.rb" time="0.004720"></testcase>
+<testcase classname="test.models.bidding_engine_test" name="BiddingEngine.bid! create a new bid on an auction if bid is bigger than last bid on auction" file="./test/models/bidding_engine_test.rb" time="0.033018"></testcase>
+<testcase classname="test.models.bidding_engine_test" name="BiddingEngine.bid! cannot create a bid if its an equal amount as the last bid" file="./test/models/bidding_engine_test.rb" time="0.012781"></testcase>
+<testcase classname="test.models.user_test" name="User Validations is valid with valid attributes" file="./test/models/user_test.rb" time="0.001282"></testcase>
+<testcase classname="test.models.user_test" name="User Validations is not valid without a password" file="./test/models/user_test.rb" time="0.001973"></testcase>
+<testcase classname="test.models.user_test" name="User Validations is not valid without an email" file="./test/models/user_test.rb" time="0.002011"></testcase>
 </testsuite>
