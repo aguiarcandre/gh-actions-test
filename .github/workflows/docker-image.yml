@@ -17,6 +17,9 @@ jobs:
     - name: Build the Docker image
       run: docker-compose up -d --build
       
+    - name: Create database
+      run: docker-compose run web rake db:create
+      
     - name: Prepare database
       run: docker-compose run web rake db:migrate db:test:prepare
       
