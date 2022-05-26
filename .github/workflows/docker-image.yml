@@ -17,5 +17,8 @@ jobs:
     - name: Build the Docker image
       run: docker-compose up -d --build
       
+    - name: Prepare database
+      run: docker-compose run web rake db:migrate db:test:prepare
+      
     - name: Run tests
       run: docker-compose run web bundle exec rspec test/models/auction_test.rb
