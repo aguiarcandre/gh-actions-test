@@ -22,7 +22,9 @@ jobs:
             curl -L "https://github.com/docker/compose/releases/download/${COMPOSE_VERSION}/docker-compose-$(uname -s)-$(uname -m)" -o ~/docker-compose
             chmod +x ~/docker-compose
             sudo mv ~/docker-compose /usr/local/bin/docker-compose
-      - setup_remote_docker
+      - setup_remote_docker:
+          docker_layer_caching: true # should not be important
+          version: 20.10.12
       - run:
           name: "Build docker"
           command: "docker compose up -d --build"
