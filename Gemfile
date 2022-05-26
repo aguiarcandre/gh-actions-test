@@ -53,6 +53,7 @@ end
 group :test do
   gem 'rspec-rails', '~> 4.0.0'
   gem "rspec_junit_formatter"
+  gem 'shoulda-matchers'
   gem 'simplecov', require: false
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '>= 2.15'

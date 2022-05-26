@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="rspec" tests="8" skipped="0" failures="0" errors="0" time="0.107620" timestamp="2022-05-26T22:24:42+00:00" hostname="33cf7089c5d2">
+<properties>
+<property name="seed" value="26257"/>
+</properties>
+<testcase classname="test.models.auction_test" name="Auction is valid with valid attributes" file="./test/models/auction_test.rb" time="0.079841"></testcase>
+<testcase classname="test.models.auction_test" name="Auction is not valid without a title" file="./test/models/auction_test.rb" time="0.003923"></testcase>
+<testcase classname="test.models.auction_test" name="Auction is not valid without a description" file="./test/models/auction_test.rb" time="0.002508"></testcase>
+<testcase classname="test.models.auction_test" name="Auction is not valid without a start_date" file="./test/models/auction_test.rb" time="0.002246"></testcase>
+<testcase classname="test.models.auction_test" name="Auction is not valid without a end_date" file="./test/models/auction_test.rb" time="0.002401"></testcase>
+<testcase classname="test.models.user_test" name="User Validations is valid with valid attributes" file="./test/models/user_test.rb" time="0.010191"></testcase>
+<testcase classname="test.models.user_test" name="User Validations is not valid without a password" file="./test/models/user_test.rb" time="0.002275"></testcase>
+<testcase classname="test.models.user_test" name="User Validations is not valid without an email" file="./test/models/user_test.rb" time="0.001979"></testcase>
+</testsuite>
