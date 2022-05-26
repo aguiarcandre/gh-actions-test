@@ -25,10 +25,10 @@ jobs:
       run: docker-compose run web bundle exec rspec test/models/auction_test.rb
 
     - name: Publish Test Results
-        uses: EnricoMi/publish-unit-test-result-action@v1
-        if: always()
-        with:
-          junit_files: "rspec.xml"
+      uses: EnricoMi/publish-unit-test-result-action@v1
+      if: always()
+      with:
+        junit_files: "rspec.xml"
 
     - name: Simplecov Report
       uses: aki77/simplecov-report-action@v1
