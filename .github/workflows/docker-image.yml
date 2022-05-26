@@ -1,8 +1,6 @@
 name: Docker Image CI
 
 on:
-  push:
-    branches: [ main ]
   pull_request:
     branches: [ main ]
 
@@ -16,12 +14,23 @@ jobs:
     - uses: actions/checkout@v3
     - name: Build the Docker image
       run: docker-compose up -d --build
-      
+
+  database:
+
+    steps:    
     - name: Create database
       run: docker-compose run web rake db:create
       
     - name: Prepare database
       run: docker-compose run web rake db:migrate db:test:prepare
+
+  tests:
       
+    steps:
     - name: Run tests
       run: docker-compose run web bundle exec rspec test/models/auction_test.rb
+
+    - name: Simplecov Report
+      uses: aki77/simplecov-report-action@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
