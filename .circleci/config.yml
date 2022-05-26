@@ -18,16 +18,16 @@ jobs:
           docker_layer_caching: true
       - run:
           name: "Build docker"
-          command: "docker-compose up -d --build"
+          command: "docker compose up -d --build"
       - run:
           name: "Create database"
-          command: "docker-compose run web rake db:create"
+          command: "docker compose run web rake db:create"
       - run:
           name: "Prepare database"
-          command: "docker-compose run web rake db:migrate db:test:prepare"
+          command: "docker compose run web rake db:migrate db:test:prepare"
       - run:
           name: "Run Tests"
-          command: "docker-compose run web bundle exec rspec test/models/auction_test.rb"
+          command: "docker compose run web bundle exec rspec test/models/auction_test.rb"
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
