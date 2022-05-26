@@ -30,6 +30,10 @@ jobs:
       with:
         junit_files: "rspec.xml"
 
+    - uses: codecov/codecov-action@v2
+      with:
+        files: ./rspec.xml
+
     - name: Simplecov Report
       uses: aki77/simplecov-report-action@v1
       with:
