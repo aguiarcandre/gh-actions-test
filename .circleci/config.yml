@@ -32,7 +32,7 @@ jobs:
       PGPASSWORD: 'password'
       PGUSER: postgres
       RAILS_ENV: test
-    parallelism: 3
+    # parallelism: 3
     steps:
       - checkout
       - ruby/install-deps
