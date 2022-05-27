@@ -2,12 +2,12 @@ version: '2.1'
 orbs:
   ruby: circleci/ruby@1.8.0
 jobs:
-  build:
-    docker:
-      - image: 'cimg/ruby:2.5-node'
-    steps:
-      - checkout
-      - ruby/install-deps
+  # build:
+  #   docker:
+  #     - image: 'cimg/ruby:2.5-node'
+  #   steps:
+  #     - checkout
+  #     - ruby/install-deps
   # checking:
   #   docker:
   #     - image: 'cimg/ruby:2.5-node'
@@ -52,8 +52,8 @@ jobs:
 workflows:
   build_and_test:
     jobs:
-      - build
+      - test
       # - checking
-      - test:
-          requires:
-            - build
+      # - test:
+      #     requires:
+      #       - build
