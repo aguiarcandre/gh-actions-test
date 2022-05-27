@@ -33,7 +33,7 @@ jobs:
           bundler-cache: true
 
       - name: Install dependencies
-          run: bundle install
+        run: bundle install
 
       - name: Create database
         run: docker-compose run web rake db:create
