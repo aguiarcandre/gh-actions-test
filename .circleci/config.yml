@@ -40,7 +40,10 @@ jobs:
           command: 'dockerize -wait tcp://localhost:5432 -timeout 1m'
           name: Wait for DB
       - run:
-          command: 'bundle exec rails db:schema:load --trace'
+          command: 'rake db:create'
+          name: Database create
+      - run:
+          command: 'rake db:migrate db:test:prepare'
           name: Database setup
       - ruby/rspec-test:
           include: test/models/*.rb
