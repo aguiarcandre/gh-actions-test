@@ -9,29 +9,46 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
+    env:
+      RAILS_ENV: test
+
+    services:
+      postgres:
+        image: postgres:12.1-alpine
+        env:
+          POSTGRES_DB: myapp_test
+          POSTGRES_PASSWORD: 'password'
+          POSTGRES_USER: postgres
+        ports:
+          - 5432:5432
+        # needed because the postgres container does not provide a healthcheck
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
 
     steps:
-    - uses: actions/checkout@v3
-    - name: Build the Docker image
-      run: docker-compose up -d --build
- 
-    - name: Create database
-      run: docker-compose run web rake db:create
-      
-    - name: Prepare database
-      run: docker-compose run web rake db:migrate db:test:prepare
-      
-    - name: Run tests
-      run: docker-compose run web bundle exec rspec test/models/*.rb
+      - uses: actions/checkout@v3
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@359bebbc29cbe6c87da6bc9ea3bc930432750108
+        with:
+          ruby-version: '2.5'
+          bundler-cache: true
 
-    - name: Publish Test Results
-      uses: EnricoMi/publish-unit-test-result-action@v1
-      if: always()
-      with:
-        junit_files: "rspec.xml"
+      - name: Install dependencies
+          run: bundle install
 
-    - name: Simplecov Report
-      uses: aki77/simplecov-report-action@v1
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        failedThreshold: 90
+      - name: Create database
+        run: docker-compose run web rake db:create
+        
+      - name: Prepare database
+        run: docker-compose run web rake db:migrate db:test:prepare
+
+      - name: Publish Test Results
+        uses: EnricoMi/publish-unit-test-result-action@v1
+        if: always()
+        with:
+          junit_files: "rspec.xml"
+
+      - name: Simplecov Report
+        uses: aki77/simplecov-report-action@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          failedThreshold: 90
