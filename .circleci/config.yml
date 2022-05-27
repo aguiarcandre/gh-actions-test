@@ -49,6 +49,8 @@ jobs:
           include: test/models/*.rb
       - store_test_results:
           path: test-results
+      - store_artifacts:
+          path: coverage
 workflows:
   build_and_test:
     jobs:
