@@ -1,16 +1,16 @@
 version: '2.1'
 orbs:
-  ruby: circleci/ruby@x.y
+  ruby: circleci/ruby@1.8.0
 jobs:
   build:
     docker:
-      - image: 'cimg/ruby:2.7-node'
+      - image: 'cimg/ruby:2.5'
     steps:
       - checkout
       - ruby/install-deps
   checking:
     docker:
-      - image: 'cimg/ruby:2.7-node'
+      - image: 'cimg/ruby:2.5'
     steps:
       - checkout
       - ruby/install-deps
@@ -19,7 +19,7 @@ jobs:
           label: Inspecting with Rubocop
   test:
     docker:
-      - image: 'cimg/ruby:2.7-node'
+      - image: 'cimg/ruby:2.5'
       - environment:
           POSTGRES_DB: myapp_test
           POSTGRES_PASSWORD: 'password'
