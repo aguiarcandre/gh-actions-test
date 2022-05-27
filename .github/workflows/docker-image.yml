@@ -36,10 +36,10 @@ jobs:
         run: bundle install
 
       - name: Create database
-        run: docker-compose run web rake db:create
+        run: bundle exec rake db:create
         
       - name: Prepare database
-        run: docker-compose run web rake db:migrate db:test:prepare
+        run: bundle exec rake db:migrate db:test:prepare
 
       - name: Publish Test Results
         uses: EnricoMi/publish-unit-test-result-action@v1
