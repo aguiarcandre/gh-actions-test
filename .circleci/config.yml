@@ -1,6 +1,6 @@
 version: '2.1'
 orbs:
-  ruby: cimg/ruby@1.8.0
+  ruby: circleci/ruby@1.8.0
 jobs:
   # build:
   #   docker:
@@ -24,7 +24,7 @@ jobs:
           POSTGRES_DB: myapp_test
           POSTGRES_PASSWORD: 'password'
           POSTGRES_USER: postgres
-        image: 'circleci/postgres:9.5-alpine'
+        image: 'cimg/postgres:9.5-alpine'
     environment:
       BUNDLE_JOBS: '3'
       BUNDLE_RETRY: '3'
