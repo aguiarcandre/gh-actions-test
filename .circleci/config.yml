@@ -24,7 +24,7 @@ jobs:
           POSTGRES_DB: myapp_test
           POSTGRES_PASSWORD: 'password'
           POSTGRES_USER: postgres
-        image: 'cimg/postgres:9.5-alpine'
+        image: 'cimg/postgres:9.6.24'
     environment:
       BUNDLE_JOBS: '3'
       BUNDLE_RETRY: '3'
