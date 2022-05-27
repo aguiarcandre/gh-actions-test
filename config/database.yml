@@ -13,4 +13,5 @@ development:
 
 test:
   <<: *default
+  host: 127.0.0.1
   database: myapp_test
