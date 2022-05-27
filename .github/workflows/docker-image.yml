@@ -41,6 +41,9 @@ jobs:
       - name: Prepare database
         run: bundle exec rake db:migrate db:test:prepare
 
+      - name: Run tests
+        run: bundle exec rspec test/models/*.rb
+
       - name: Publish Test Results
         uses: EnricoMi/publish-unit-test-result-action@v1
         if: always()
