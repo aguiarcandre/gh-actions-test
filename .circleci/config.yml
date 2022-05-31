@@ -1,0 +1,65 @@
+version: '2.1'
+orbs:
+  ruby: circleci/ruby@1.8.0
+jobs:
+  build:
+    docker:
+      - image: 'cimg/ruby:2.5-node'
+    steps:
+      - checkout
+      - ruby/install-deps
+  checking:
+    docker:
+      - image: 'cimg/ruby:2.5-node'
+    steps:
+      - checkout
+      - ruby/install-deps
+      - ruby/rubocop-check:
+          format: progress
+          label: Inspecting with Rubocop
+  test:
+    docker:
+      - image: 'cimg/ruby:2.5-node'
+      - environment:
+          POSTGRES_DB: myapp_test
+          POSTGRES_PASSWORD: 'password'
+          POSTGRES_USER: postgres
+        image: 'cimg/postgres:9.6.24'
+    environment:
+      BUNDLE_JOBS: '3'
+      BUNDLE_RETRY: '3'
+      PGHOST: 127.0.0.1
+      PGPASSWORD: 'password'
+      PGUSER: postgres
+      RAILS_ENV: test
+    # parallelism: 3
+    steps:
+      - checkout
+      - ruby/install-deps
+      - run:
+          command: 'dockerize -wait tcp://localhost:5432 -timeout 1m'
+          name: Wait for DB
+      - run:
+          command: 'bundle exec rake db:create'
+          name: Database create
+      - run:
+          command: 'bundle exec rake db:migrate db:test:prepare'
+          name: Database setup
+      - ruby/rspec-test:
+          include: test/models/*.rb
+      - store_test_results:
+          path: test-results
+      - store_artifacts:
+          path: coverage
+workflows:
+  build_and_test:
+    jobs:
+      - build
+          # filters:
+          #   branches:
+          #     only:
+          #       - circleci-project-setup
+      - checking
+      - test:
+          requires:
+            - build

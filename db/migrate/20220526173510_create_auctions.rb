@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# test
 class CreateAuctions < ActiveRecord::Migration[5.2]
   def change
     create_table :auctions do |t|

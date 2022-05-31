@@ -1,44 +1,46 @@
+# frozen_string_literal: true
+
 # spec/models/auction_spec.rb
 
 require 'rails_helper'
 
-RSpec.describe Auction, :type => :model do
-  let(:seller) {
-    User.new(:email => "jane@doe.com", :password => "pw1234")
-  }
-  subject {
-    described_class.new(title: "Anything",
-                        description: "Lorem ipsum",
+RSpec.describe Auction, type: :model do
+  let(:seller) do
+    User.new(email: 'jane@doe.com', password: 'pw1234')
+  end
+  subject do
+    described_class.new(title: 'Anything',
+                        description: 'Lorem ipsum',
                         start_date: DateTime.now,
                         end_date: DateTime.now + 1.week,
                         user_id: 1)
-  }
+  end
 
-  describe "Associations" do
+  describe 'Associations' do
     it { should belong_to(:user).without_validating_presence }
     it { should have_many(:bids) }
   end
 
-  it "is valid with valid attributes" do
+  it 'is valid with valid attributes' do
     expect(subject).to be_valid
   end
 
-  it "is not valid without a title" do
+  it 'is not valid without a title' do
     subject.title = nil
     expect(subject).to_not be_valid
   end
 
-  it "is not valid without a description" do
+  it 'is not valid without a description' do
     subject.description = nil
     expect(subject).to_not be_valid
   end
 
-  it "is not valid without a start_date" do
+  it 'is not valid without a start_date' do
     subject.start_date = nil
     expect(subject).to_not be_valid
   end
 
-  it "is not valid without a end_date" do
+  it 'is not valid without a end_date' do
     subject.end_date = nil
     expect(subject).to_not be_valid
   end
