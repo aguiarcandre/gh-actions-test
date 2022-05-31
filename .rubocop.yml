@@ -1,0 +1,8 @@
+Style/Lambda: 
+  EnforcedStyle: literal
+
+Style/MixinUsage:
+  Enabled: false
+
+Metrics/BlockLength:
+  Enabled: false

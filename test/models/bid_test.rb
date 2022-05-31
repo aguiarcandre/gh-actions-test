@@ -1,12 +1,14 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.describe Bid, :type => :model do
-  describe "Associations" do
+RSpec.describe Bid, type: :model do
+  describe 'Associations' do
     it { should belong_to(:bidder) }
     it { should belong_to(:auction) }
   end
 
-  describe "Validations" do
+  describe 'Validations' do
     it { should validate_presence_of(:bidder) }
   end
 end

@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# test
 class BiddingEngine
   def self.bid!(auction, amount, bidder)
     new(auction, amount, bidder).bid!
@@ -9,17 +12,18 @@ class BiddingEngine
   end
 
   def bid!
-    if @bid.valid? && is_bigger?
+    if @bid.valid? && bigger?
       @bid.save
     else
-      @auction.errors.add(:bid, "must be bigger than the last bid on the auction")
+      @auction.errors.add(:bid, 'must be bigger than the last bid on the auction')
     end
   end
 
   private
 
-  def is_bigger?
+  def bigger?
     return true unless @auction.bids.last
+
     @auction.bids.last.amount < @bid.amount
   end
 end

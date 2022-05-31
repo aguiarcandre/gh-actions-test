@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Auction < ActiveRecord::Base
   belongs_to :user, optional: true
   has_many :bids
