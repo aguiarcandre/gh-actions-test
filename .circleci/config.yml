@@ -54,7 +54,11 @@ jobs:
 workflows:
   build_and_test:
     jobs:
-      - test
+      - test:
+          filters:
+            branches:
+              only:
+                - circleci-project-setup
       # - checking
       # - test:
       #     requires:
